@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Atracciones | Odontólogo Angulo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="teatro-body">
+
+    <audio id="audio-seccion" src="audio/galeria.mp3" loop></audio>
+    
+    <div id="abstraction-overlay"></div>
+
+    <header class="circo-header">
+        <div class="banner-caine">
+            <img src="imagen/doctor-angulo.png" alt="Odontólogo Angulo" class="caine-img">
+            <div class="titulo-container">
+                <h1 class="glow-yellow">GALERÍA DE ATRACCIONES</h1>
+                <p class="universidades">NUESTROS TRATAMIENTOS DIGITALES</p>
+            </div>
+        </div>
+        
+        <nav class="menu-flotante">
+            <a href="home.html" class="btn-nav">INICIO</a>
+            <a href="elenco.html" class="btn-nav">ELENCO</a>
+            <a href="laboratorio.html" class="btn-nav">LABORATORIO</a>
+            <a href="galeria.html" class="btn-nav activo">ATRACCIONES</a>
+            <a href="contacto.html" class="btn-nav">SALIDA</a>
+        </nav>
+    </header>
+
+    <main class="escenario-principal">
+        <div class="treatments-grid">
+            <div class="treatment-item" style="border-color: var(--circo-rojo);">
+                <img src="imagen/t-brackets.png" alt="Brackets Digitales">
+                <h3 style="font-family: var(--fuente-circo); color: #fff;">Brackets Digitales</h3>
+                <p>Alineación computarizada mediante simulación predictiva de vectores de fuerza maxilar.</p>
+                <div class="precio-box" data-precio=\"2500\">Pasa el mouse para ver precio</div>
+            </div>
+
+            <div class="treatment-item" style="border-color: var(--circo-azul);">
+                <video autoplay controls muted loop class="promo-video">
+                    <source src="video/limpieza-pixeles.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+                <h3 style="font-family: var(--fuente-circo); color: #fff;">Limpieza de Píxeles</h3>
+                <p>Elimina el sarro y las impurezas acumuladas en tus texturas dentales con nuestro sistema ultrasónico.</p>
+                <div class="precio-box" data-precio=\"150\">Pasa el mouse para ver precio</div>
+            </div>
+
+            <div class="treatment-item" style="border-color: var(--circo-amarillo);">
+                <img src="imagen/t-blanqueamiento.png" alt="Blanqueamiento 4K">
+                <h3 style="font-family: var(--fuente-circo); color: #fff;">Blanqueamiento 4K</h3>
+                <p>Sube la resolución y el brillo de tus dientes al máximo nivel de blanco digital permitido por el sistema.</p>
+                <div class="precio-box" data-precio=\"350\">Pasa el mouse para ver precio</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('audio-seccion');
+            audio.play().catch(err => console.log("Interacciona para reproducir música de atracciones"));
+            iniciarContadorAbstraccion();
+        });
+    </script>
+</body>
+</html>

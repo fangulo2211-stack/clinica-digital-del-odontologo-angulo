@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teatro Principal | Odontólogo Angulo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="teatro-body">
+
+    <audio id="audio-bienvenida" src="audio/bienvenida_caine.mp3"></audio>
+    <audio id="audio-main" src="audio/tema_principal.mp3" loop></audio>
+    
+    <div id="abstraction-overlay"></div>
+
+    <header class="circo-header">
+        <div class="banner-caine">
+            <img src="imagen/doctor-angulo.png" alt="Odontólogo Angulo" class="caine-img">
+            <div class="titulo-container">
+                <h1 class="glow-yellow">ODONTÓLOGO ANGULO</h1>
+                <p class="universidades">UNICA | UNMSM | UNFV | SIDERAL CARRIÓN</p>
+                <p class="slogan">"¡Donde tu sonrisa es el show principal!"</p>
+            </div>
+        </div>
+        
+        <nav class="menu-flotante">
+            <a href="home.html" class="btn-nav activo">INICIO</a>
+            <a href="elenco.html" class="btn-nav">ELENCO</a>
+            <a href="galeria.html" class="btn-nav">GALERÍA</a>
+            <a href="laboratorio.html" class="btn-nav">LABORATORIO</a>
+            <a href="contacto.html" class="btn-nav">SALIDA</a>
+        </nav>
+    </header>
+
+    <main class="escenario-principal">
+        <section class="section-card" style="border-color: var(--circo-rojo); text-align: center;">
+            <h2 class="section-title">¡EL ESPECTÁCULO VA A COMENZAR!</h2>
+            <p style="font-size: 1.2rem; line-height: 1.6; max-width: 800px; margin: 0 auto 20px;">
+                Ponte cómodo en tu asiento virtual, estimado paciente. Explora nuestro menú superior para conocer al elenco más extravagante de la odontología, adentrarte en el laboratorio de renderizado 3D o registrar tus coordenadas antes de que el vacío digital te consuma.
+            </p>
+            <div style="font-size: 3rem; animation: latido 1s infinite alternate; display: inline-block;">🎪✨⚡</div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audioBienvenida = document.getElementById('audio-bienvenida');
+            const audioMain = document.getElementById('audio-main');
+
+            // Caine saluda y arranca el tema del circo de fondo
+            audioBienvenida.play().catch(err => console.log("Audio bloqueado hasta interacción."));
+            audioMain.play().catch(err => console.log("Audio bloqueado hasta interacción."));
+
+        });
+    </script>
+</body>
+</html>

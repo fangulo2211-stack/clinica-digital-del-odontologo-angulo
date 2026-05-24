@@ -1,0 +1,396 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y CONFIGURACIÓN BASE (Circo Dental Digital)
+   ========================================================================== */
+:root {
+    --circo-rojo: #e91e63;
+    --circo-azul: #2196f3;
+    --circo-amarillo: #ffeb3b;
+    --circo-negro: #0a0a0a;
+    --fuente-circo: 'Bungee', cursive;
+    --fuente-texto: 'Roboto', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* CURSORES LOCALES PERSONALIZADOS DE BUBBLE (Optimizados a 32x32) */
+html, body, button, a, select, input, textarea, option {
+    cursor: url('../imagen/bubble-cerrado.png'), auto !important;
+}
+
+html:active, body:active, button:active, a:active, select:active, input:active, textarea:active {
+    cursor: url('../imagen/bubble-abierto.png'), auto !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--circo-negro);
+    color: white;
+    font-family: var(--fuente-texto);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   ANIMACIÓN DEL VACÍO DENTAL (FONDO DINÁMICO PARA EL TEATRO)
+   ========================================================================== */
+.teatro-body {
+    position: relative;
+    background: radial-gradient(circle at center, #150019 0%, #050008 100%);
+    min-height: 100vh;
+}
+
+.teatro-body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: 
+        url('imagen/modelo-3d-2.png'),
+        url('../imagen/modelo-3d-2.png');
+    background-size: 80px;
+    background-position: 10% 20%;
+    background-repeat: no-repeat;
+    opacity: 0.06;
+    animation: flotarVacio 20s infinite linear;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes flotarVacio {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* ==========================================================================
+   PANTALLA DE ENTRADA / MANDÍBULA (INDEX.HTML)
+   ========================================================================== */
+.intro-body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #000;
+}
+
+.jaw-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.jaw-top, .jaw-bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #540202;
+    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+}
+
+.jaw-top { top: 0; align-items: flex-end; border-bottom: 12px solid var(--circo-rojo); }
+.jaw-bottom { bottom: 0; align-items: flex-start; border-top: 12px solid var(--circo-rojo); }
+
+.teeth-top, .teeth-bottom {
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(45deg, transparent 33.333%, #fff 33.333%, #fff 66.666%, transparent 66.666%),
+                      linear-gradient(-45deg, transparent 33.333%, #fff 33.333%, #fff 66.666%, transparent 66.666%);
+    background-size: 50px 100px;
+}
+
+.logo-intro {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
+}
+
+.logo-intro img {
+    max-width: 350px;
+    filter: drop-shadow(0 0 20px var(--circo-rojo));
+    animation: latido 1.5s infinite alternate;
+}
+
+.click-text {
+    position: absolute;
+    bottom: 8%; width: 100%;
+    text-align: center;
+    font-family: var(--fuente-circo);
+    color: var(--circo-amarillo);
+    font-size: 1.5rem;
+    text-shadow: 2px 2px #000;
+    z-index: 20;
+    animation: parpadeo 1s infinite;
+}
+
+/* ==========================================================================
+   PANTALLA DE TRANSICIÓN CON MARCO DE DIAPOSITIVA (FONDO-CIRCO)
+   ========================================================================== */
+#slide-transition {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.slide-frame-container {
+    width: 100%;
+    max-width: 900px;
+    height: 550px;
+    background: url('../imagen/fondo-circo.png') no-repeat center center;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.slide {
+    font-family: var(--fuente-circo);
+    font-size: 2.2rem;
+    color: #fff;
+    text-align: center;
+    text-shadow: 3px 3px 0px #000, 0 0 10px var(--circo-rojo);
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DEL TEATRO PRINCIPAL Y HEADER
+   ========================================================================== */
+.circo-header {
+    background: rgba(0, 0, 0, 0.85);
+    border: 5px solid var(--circo-rojo);
+    margin: 20px;
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 35px rgba(233, 30, 99, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+.banner-caine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.caine-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid var(--circo-azul);
+    object-fit: cover;
+    box-shadow: 0 0 25px var(--circo-azul);
+}
+
+.glow-yellow {
+    font-family: var(--fuente-circo);
+    color: var(--circo-amarillo);
+    font-size: 2.8rem;
+    margin: 0;
+    text-shadow: 4px 4px 0px var(--circo-rojo);
+}
+
+.universidades {
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    background: rgba(233, 30, 99, 0.3);
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-top: 10px;
+    border: 1px solid var(--circo-rojo);
+}
+
+.menu-flotante {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    text-decoration: none;
+    background: var(--circo-rojo);
+    color: white;
+    font-family: var(--fuente-circo);
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 3px solid var(--circo-amarillo);
+    box-shadow: 0 4px 0 #b71c1c;
+    transition: all 0.2s ease;
+}
+
+.btn-nav:hover, .btn-nav.activo {
+    background: var(--circo-azul);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 0 #0d47a1;
+}
+
+.btn-nav:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.escenario-principal {
+    position: relative;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 5;
+}
+
+/* ==========================================================================
+   BURBUJA INTERACTIVA DE CAINE
+   ========================================================================== */
+#caine-bubble-container {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    pointer-events: none;
+    transform: translateX(400px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#caine-bubble-container.show { transform: translateX(0); }
+
+.caine-bubble-text {
+    background: white;
+    color: black;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 220px;
+    border: 3px solid var(--circo-rojo);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.caine-bubble-text::after {
+    content: ""; position: absolute; top: 50%; right: -15px;
+    transform: translateY(-50%); border-width: 10px 0 10px 15px;
+    border-style: solid; border-color: transparent transparent transparent white;
+}
+
+.caine-bubble-avatar {
+    width: 75px; height: 75px; border-radius: 50%;
+    border: 3px solid var(--circo-amarillo); background: var(--circo-negro);
+}
+
+/* ==========================================================================
+   SECCIÓN: STAFF (ELENCO - ZOOM Y DESTELLO VIP)
+   ========================================================================== */
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+}
+
+.staff-member {
+    background: rgba(0, 0, 0, 0.75);
+    border: 4px solid white;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.staff-member:hover { transform: translateY(-8px); }
+
+/* ZOOM ELÁSTICO EN LAS IMÁGENES DEL ELENCO */
+.staff-member img {
+    width: 110px; height: 110px; border-radius: 50%; object-fit: cover;
+    margin-bottom: 15px; border: 4px solid white;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+}
+
+.staff-member:hover img {
+    transform: scale(1.18) rotate(3deg);
+    border-color: var(--circo-amarillo);
+}
+
+/* DESTELLO DE NEÓN VIP DORADO SÓLO PARA LA TARJETA DEL DR. ANGULO */
+.staff-grid .staff-member:first-child {
+    position: relative;
+    overflow: hidden;
+    border: 4px solid var(--circo-amarillo) !important;
+    box-shadow: 0 0 30px rgba(255, 235, 59, 0.4);
+}
+
+.staff-grid .staff-member:first-child::before {
+    content: ''; position: absolute; top: -50%; left: -60%; width: 30%; height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(25deg); animation: destelloVIP 4.5s infinite ease-in-out; pointer-events: none; z-index: 1;
+}
+
+@keyframes destelloVIP {
+    0% { left: -60%; } 15% { left: 130%; } 100% { left: 130%; }
+}
+
+.staff-grid .staff-member:first-child h3 {
+    color: var(--circo-amarillo);
+    animation: vibracionBrillo 2s infinite alternate;
+}
+
+@keyframes vibracionBrillo {
+    from { text-shadow: 0 0 8px rgba(255, 235, 59, 0.5); }
+    to { text-shadow: 0 0 18px rgba(255, 235, 59, 0.9), 0 0 5px #fff; }
+}
+
+/* ==========================================================================
+   SECCIÓN: LABORATORIO DIGITAL Y GALERÍA
+   ========================================================================== */
+.section-card { background: rgba(0, 0, 0, 0.8); border: 4px solid var(--circo-azul); border-radius: 20px; padding: 30px; }
+.section-title { font-family: var(--fuente-circo); color: var(--circo-amarillo); text-align: center; font-size: 2.2rem; }
+.lab-container { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
+.lab-step { text-align: center; max-width: 300px; }
+.lab-step img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 3px solid var(--circo-amarillo); }
+.lab-arrow { font-size: 3.5rem; color: var(--circo-rojo); animation: latido 1s infinite alternate; }
+.malla-preview { position: relative; width: 100%; height: 200px; }
+.malla-preview img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+.overlay-img { opacity: 0.4; mix-blend-mode: screen; animation: glitchEfecto 0.3s infinite; }
+
+.treatments-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.treatment-item { background: rgba(0,0,0,0.8); border: 4px solid var(--circo-amarillo); border-radius: 20px; padding: 20px; text-align: center; }
+.treatment-item img, .promo-video { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+
+.precio-box { background: #111; border: 2px dashed var(--circo-azul); padding: 10px; margin-top: 15px; font-family: var(--fuente-circo); color: var(--circo-amarillo); font-size: 1.4rem; }
+
+/* ==========================================================================
+   CAPA DE ABSTRACCIÓN NEGRA TOTAL
+   ========================================================================== */
+#abstraction-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; opacity: 0; pointer-events: none; z-index: 99999;
+}
+
+@keyframes parpadeo { 50% { opacity: 0; } }
+@keyframes latido { from { transform: scale(1); } to { transform: scale(1.05); } }
+@keyframes glitchEfecto {
+    0% { transform: translate(0); filter: hue-rotate(0deg); }
+    30% { transform: translate(-3px, 2px); }
+    60% { transform: translate(3px, -2px); filter: hue-rotate(90deg); }
+    100% { transform: translate(0); }
+}

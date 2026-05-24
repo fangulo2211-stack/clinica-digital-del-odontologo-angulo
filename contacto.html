@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Salida | Odontólogo Angulo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la interactividad del formulario y recibo */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .form-box, .contact-data-card {
+            background: rgba(0, 0, 0, 0.85);
+            border: 4px solid var(--circo-rojo);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+        }
+        .contact-data-card { border-color: var(--circo-azul); }
+        .horarios-list p { margin: 8px 0; font-size: 0.95rem; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-family: var(--fuente-circo); color: var(--circo-amarillo); font-size: 0.9rem; margin-bottom: 5px; }
+        .input-group input, .input-group select { width: 100%; padding: 10px; background: #111; border: 2px solid #333; color: white; border-radius: 8px; font-size: 1rem; }
+        .input-group input:focus, .input-group select:focus { border-color: var(--circo-azul); outline: none; }
+        .precio-total-box { background: #1a1a1a; border: 2px dashed var(--circo-amarillo); padding: 12px; text-align: center; font-family: var(--fuente-circo); color: var(--circo-amarillo); font-size: 1.3rem; margin: 15px 0; }
+        .btn-circus { width: 100%; background: var(--circo-rojo); color: white; border: 3px solid var(--circo-amarillo); padding: 12px; font-family: var(--fuente-circo); font-size: 1.1rem; border-radius: 8px; transition: 0.2s; }
+        .btn-circus:hover { background: var(--circo-azul); transform: scale(1.02); }
+        
+        /* Barra de carga */
+        #loading-container { display: none; text-align: center; margin-top: 20px; }
+        .progress-bar { width: 100%; height: 25px; background: #222; border: 2px solid white; border-radius: 12px; overflow: hidden; position: relative; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--circo-rojo), var(--circo-azul)); transition: width 0.1s linear; }
+        
+        /* Recibo Certificado Estilo Circo Digital */
+        #ticket-recibo { display: none; background: #fff; color: #000; border: 8px double var(--circo-rojo); border-radius: 15px; padding: 25px; margin-top: 30px; box-shadow: 0 0 30px var(--circo-amarillo); position: relative; }
+        #ticket-recibo::before, #ticket-recibo::after { content: "🎪"; position: absolute; font-size: 2rem; }
+        #ticket-recibo::before { top: 10px; left: 10px; }
+        #ticket-recibo::after { top: 10px; right: 10px; }
+        .ticket-title { font-family: var(--fuente-circo); text-align: center; color: var(--circo-rojo); font-size: 1.8rem; margin: 0 0 15px 0; border-bottom: 3px dashed #000; padding-bottom: 10px; }
+        .ticket-data { font-family: monospace; font-size: 1.1rem; line-height: 1.6; }
+        .ticket-footer { text-align: center; font-family: var(--fuente-circo); margin-top: 15px; border-top: 2px dashed #000; padding-top: 10px; color: var(--circo-azul); font-size: 0.9rem; }
+    </style>
+</head>
+<body class="teatro-body">
+
+    <audio id="audio-seccion" src="audio/contacto.mp3" loop></audio>
+    
+    <div id="abstraction-overlay"></div>
+
+    <header class="circo-header">
+        <div class="banner-caine">
+            <img src="imagen/doctor-angulo.png" alt="Odontólogo Angulo" class="caine-img">
+            <div class="titulo-container">
+                <h1 class="glow-yellow">PORTAL DE SALIDA</h1>
+                <p class="universidades">AGENDA TU FUNCIÓN DIGITAL</p>
+            </div>
+        </div>
+        
+        <nav class="menu-flotante">
+            <a href="home.html" class="btn-nav">INICIO</a>
+            <a href="elenco.html" class="btn-nav">ELENCO</a>
+            <a href="laboratorio.html" class="btn-nav">LABORATORIO</a>
+            <a href="galeria.html" class="btn-nav">ATRACCIONES</a>
+            <a href="contacto.html" class="btn-nav activo">SALIDA</a>
+        </nav>
+    </header>
+
+    <main class="escenario-principal">
+        <div class="contact-container">
+            <section class="form-box" id="form-section">
+                <h2>REGISTRO DE PACIENTE</h2>
+                <form id="appointment-form">
+                    <div class="input-group">
+                        <label>NOMBRE DEL AVATAR:</label>
+                        <input type="text" id="patient-name" placeholder="Ej. Chrome Ryugu" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>SELECCIONA EL TRATAMIENTO/SHOW:</label>
+                        <select id="select-service">
+                            <option value="1200">Ortodoncia Estelar (S/. 1200)</option>
+                            <option value="150">Limpieza de Píxeles (S/. 150)</option>
+                            <option value="350">Blanqueamiento 4K (S/. 350)</option>
+                            <option value="250">Hacer Molde de tus Dientes 3D (S/. 250)</option>
+                            <option value="50">Cita de Evaluación General (S/. 50)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>FECHA DE TU FUNCIÓN:</label>
+                        <input type="date" id="appointment-date" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>HORARIO DISPONIBLE:</label>
+                        <select id="select-hour" required>
+                            <option value="">-- Elige una fecha primero --</option>
+                        </select>
+                    </div>
+
+                    <div class="precio-total-box" id="total-price-display">
+                        TOTAL: S/. 1200
+                    </div>
+
+                    <button type="button" class="btn-circus" onclick="procesarReserva()">¡RESERVAR MI LUGAR!</button>
+                </form>
+
+                <div id="loading-container">
+                    <p style="font-family: var(--fuente-circo); color: var(--circo-azul); margin-bottom: 5px;" id="loading-text">PROCESANDO DATOS EN EL VACÍO...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="bar-fill"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-data-card">
+                <h2 style="font-family: var(--fuente-circo); color: var(--circo-amarillo); margin-top:0;">⏰ HORARIOS DEL SHOW</h2>
+                <div class="horarios-list" style="margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 15px;">
+                    <p><strong>Lunes:</strong> 1:00 PM - 10:00 PM</p>
+                    <p><strong>Martes a Jueves:</strong> 2:00 PM - 10:00 PM</p>
+                    <p><strong>Viernes:</strong> 1:00 PM - 7:00 PM</p>
+                    <p style="color: var(--circo-rojo); font-weight: bold;">Sábado y Domingo: CERRADO (Mantenimiento del Vacío)</p>
+                </div>
+
+                <h2 style="font-family: var(--fuente-circo); color: var(--circo-azul);">📍 COORDENADAS</h2>
+                <div style="line-height: 1.6;">
+                    <p><strong>Ubicación:</strong> Sector Dental (Parcona, Ica)</p>
+                    <p><strong>WhatsApp:</strong> +51 984 744 905</p>
+                    <p><strong>Email:</strong> fantio2211@gmail.com</p>
+                </div>
+            </section>
+        </div>
+
+        <div id="ticket-recibo">
+            <div class="ticket-title">ENTRADA OFICIAL AL SHOW DENTAL</div>
+            <div class="ticket-data">
+                <p><strong>CÓDIGO DE AVATAR:</strong> <span id="recibo-codigo"></span></p>
+                <p><strong>PACIENTE:</strong> <span id="recibo-nombre"></span></p>
+                <p><strong>SERVICIO REGISTRADO:</strong> <span id="recibo-servicio"></span></p>
+                <p><strong>FECHA PLANIFICADA:</strong> <span id="recibo-fecha"></span></p>
+                <p><strong>HORA ASIGNADA:</strong> <span id="recibo-hora"></span></p>
+                <p style="border-top: 1px dashed #000; padding-top: 10px; font-size: 1.2rem;">
+                    <strong>TOTAL PAGADO:</strong> <span id="recibo-total" style="color: #e91e63; font-weight: bold;"></span>
+                </p>
+            </div>
+            <div class="ticket-footer">
+                ¡TRAE ESTE CERTIFICADO DIGITAL PARA EVITAR SER ABSTRAÍDO!
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        // LÓGICA EXCLUSIVA DEL FORMULARIO INTERACTIVO
+        const inputFecha = document.getElementById('appointment-date');
+        const selectHora = document.getElementById('select-hour');
+        const selectServicio = document.getElementById('select-service');
+        const displayPrecio = document.getElementById('total-price-display');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Activar música local e inactividad
+            document.getElementById('audio-seccion').play().catch(() => {});
+            iniciarContadorAbstraccion();
+
+            // Bloquear días pasados en el calendario (toma el día actual)
+            const hoy = new Date().toISOString().split('T')[0];
+            inputFecha.min = hoy;
+        });
+
+        // Actualizar precio total automáticamente al cambiar de servicio
+        selectServicio.addEventListener('change', () => {
+            displayPrecio.innerText = "TOTAL: S/. " + selectServicio.value;
+        });
+
+        // Cambiar horas disponibles dinámicamente según el día de la semana que elija
+        inputFecha.addEventListener('change', () => {
+            const fechaElegida = new Date(inputFecha.value + 'T00:00:00');
+            const diaSemana = fechaElegida.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+            
+            selectHora.innerHTML = ''; // Limpiar opciones
+
+            if (diaSemana === 0 || diaSemana === 6) {
+                // Sábado o Domingo
+                const opt = document.createElement('option');
+                opt.value = "";
+                opt.innerText = "¡El circo está cerrado los fines de semana!";
+                selectHora.appendChild(opt);
+            } else if (diaSemana === 1) {
+                // Lunes: 1:00 PM a 10:00 PM
+                inyectarHoras(13, 22);
+            } else if (diaSemana >= 2 && diaSemana <= 4) {
+                // Martes, Miércoles, Jueves: 2:00 PM a 10:00 PM
+                inyectarHoras(14, 22);
+            } else if (diaSemana === 5) {
+                // Viernes: 1:00 PM a 7:00 PM
+                inyectarHoras(13, 19);
+            }
+        });
+
+        function inyectarHoras(inicio, fin) {
+            for (let h = inicio; h < fin; h++) {
+                const horaFormateada = h > 12 ? (h - 12) + ':00 PM' : h + ':00 AM';
+                const opt = document.createElement('option');
+                opt.value = horaFormateada;
+                opt.innerText = horaFormateada;
+                selectHora.appendChild(opt);
+            }
+        }
+
+        // Lógica de simulación de carga y render de recibo estilo Circo Digital
+        function procesarReserva() {
+            const nombre = document.getElementById('patient-name').value;
+            const fecha = inputFecha.value;
+            const hora = selectHora.value;
+
+            if (!nombre || !fecha || !hora) {
+                alert("¡Completa todos los casilleros dimensionales antes de enviar!");
+                return;
+            }
+
+            // Ocultar botón y activar barra de carga
+            document.querySelector('.btn-circus').style.display = 'none';
+            const loadContainer = document.getElementById('loading-container');
+            const barFill = document.getElementById('bar-fill');
+            loadContainer.style.display = 'block';
+
+            let progreso = 0;
+            const intervalo = setInterval(() => {
+                progreso += 5;
+                barFill.style.width = progreso + '%';
+
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    
+                    // Ocultar carga y mostrar el Certificado final
+                    loadContainer.style.display = 'none';
+                    
+                    // Inyectar datos en el recibo blanco
+                    document.getElementById('recibo-codigo').innerText = "DIG-ORD-" + Math.floor(Math.random() * 9000 + 1000);
+                    document.getElementById('recibo-nombre').innerText = nombre.toUpperCase();
+                    document.getElementById('recibo-servicio').innerText = selectServicio.options[selectServicio.selectedIndex].text.split('(')[0];
+                    document.getElementById('recibo-fecha').innerText = fecha;
+                    document.getElementById('recibo-hora').innerText = hora;
+                    document.getElementById('recibo-total').innerText = "S/. " + selectServicio.value;
+
+                    // Desplegar recibo con animación sutil
+                    const recibo = document.getElementById('ticket-recibo');
+                    recibo.style.display = 'block';
+                    recibo.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 150); // Carga completa en aprox 3 segundos
+        }
+    </script>
+</body>
+</html>

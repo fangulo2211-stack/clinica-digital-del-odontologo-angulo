@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio Digital 3D | Odontólogo Angulo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="teatro-body">
+
+    <audio id="audio-seccion" src="audio/laboratorio.mp3" loop></audio>
+    
+    <div id="abstraction-overlay"></div>
+
+    <header class="circo-header">
+        <div class="banner-caine">
+            <img src="imagen/doctor-angulo.png" alt="Odontólogo Angulo" class="caine-img">
+            <div class="titulo-container">
+                <h1 class="glow-yellow">LABORATORIO EN 3D</h1>
+                <p class="universidades">PROCESAMIENTO VIRTUAL DE ALTA PRECISIÓN</p>
+            </div>
+        </div>
+        
+        <nav class="menu-flotante">
+            <a href="home.html" class="btn-nav">INICIO</a>
+            <a href="elenco.html" class="btn-nav">ELENCO</a>
+            <a href="laboratorio.html" class="btn-nav activo">LABORATORIO</a>
+            <a href="galeria.html" class="btn-nav">ATRACCIONES</a>
+            <a href="contacto.html" class="btn-nav">SALIDA</a>
+        </nav>
+    </header>
+
+    <main class="escenario-principal">
+        <section class="section-card">
+            <h2 class="section-title">EL FLUJO DE RENDERIZADO DENTAL</h2>
+            
+            <div class="lab-container">
+                <div class="lab-step">
+                    <img src="imagen/lab-captura.png" alt="Escaneo Intraoral">
+                    <h4 style="color: var(--circo-rojo); font-family: var(--fuente-circo); margin: 10px 0 5px;">1. ESCANEO ÓPTICO</h4>
+                    <p style="font-size: 0.9rem; margin: 0;">Mapeo fotogramétrico de la cavidad oral sin moldes de yeso molestos.</p>
+                </div>
+
+                <div class="lab-arrow">➔</div>
+
+                <div class="lab-step">
+                    <div class="malla-preview">
+                        <img src="imagen/modelo-3d-2.png" alt="Malla Base">
+                        <img src="imagen/modelo-3d-2.png" alt="Malla Glitch" class="overlay-img">
+                    </div>
+                    <h4 style="color: var(--circo-azul); font-family: var(--fuente-circo); margin: 10px 0 5px;">2. PROCESAMIENTO MATRICIAL</h4>
+                    <p style="font-size: 0.9rem; margin: 0;">Alineación geométrica y cálculo analítico de vectores interdentales.</p>
+                </div>
+
+                <div class="lab-arrow">➔</div>
+
+                <div class="lab-step">
+                    <img src="imagen/modelo-3d-1.png" alt="Modelo 3D Final">
+                    <h4 style="color: var(--circo-amarillo); font-family: var(--fuente-circo); margin: 10px 0 5px;">3. MODELO CORONARIO</h4>
+                    <p style="font-size: 0.9rem; margin: 0;">Estructura final lista para el fresado robótico e impresión biomecánica.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('audio-seccion');
+            audio.play().catch(err => console.log("Interacciona para reproducir música del laboratorio"));
+            iniciarContadorAbstraccion();
+        });
+    </script>
+</body>
+</html>

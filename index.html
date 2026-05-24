@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos al Circo Dental Digital</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="intro-body">
+
+    <audio id="audio-wait" src="audio/sala-de-espera.mp3" loop></audio>
+    <audio id="audio-transition" src="audio/transicion.mp3"></audio>
+
+    <div id="intro-screen">
+        <div class="jaw-container" onclick="iniciarEspectaculo()">
+            
+            <div class="jaw-top">
+                <div class="teeth-top"></div>
+            </div>
+            
+            <div class="logo-intro">
+                <img src="imagen/logo-clinica.png" alt="Circo Dental Logo">
+            </div>
+            
+            <div class="jaw-bottom">
+                <div class="teeth-bottom"></div>
+            </div>
+            
+            <p class="click-text">HAZ CLICK EN LA BOCA PARA ENTRAR AL SHOW</p>
+        </div>
+    </div>
+
+    <div id="slide-transition" style="display: none;">
+        <div class="slide-frame-container">
+            <div class="slide" id="slide1" style="display: none;">¿Estás cansado de ir a ver tus dientes y que todo te parezca aburrido?</div>
+            <div class="slide" id="slide2" style="display: none;">¿De siempre ver a tu dentista con cara de que irá a un funeral?</div>
+            <div class="slide" id="slide3" style="display: none;">¡Pues qué crees! Tenemos lo ideal para ti, pequeño paciente.</div>
+            <div class="slide" id="slide4" style="display: none;">Ya no sufras más, te damos la bienvenida al...</div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

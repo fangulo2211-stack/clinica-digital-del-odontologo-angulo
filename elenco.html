@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Elenco de Sonrisas | Odontólogo Angulo</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="teatro-body">
+
+    <audio id="audio-seccion" src="audio/staff_elenco.mp3" loop></audio>
+    
+    <div id="abstraction-overlay"></div>
+
+    <header class="circo-header">
+        <div class="banner-caine">
+            <img src="imagen/doctor-angulo.png" alt="Odontólogo Angulo" class="caine-img">
+            <div class="titulo-container">
+                <h1 class="glow-yellow">EL ENTRAÑABLE ELENCO</h1>
+                <p class="universidades">LOS PROTAGONISTAS DE TU SALUD DENTAL</p>
+            </div>
+        </div>
+        
+        <nav class="menu-flotante">
+            <a href="home.html" class="btn-nav">INICIO</a>
+            <a href="elenco.html" class="btn-nav activo">ELENCO</a>
+            <a href="laboratorio.html" class="btn-nav">LABORATORIO</a>
+            <a href="galeria.html" class="btn-nav">ATRACCIONES</a>
+            <a href="contacto.html" class="btn-nav">SALIDA</a>
+        </nav>
+    </header>
+
+    <main class="escenario-principal">
+        <div class="staff-grid">
+            <div class="staff-member card-red" data-personaje="angulo">
+                <img src="imagen/doctor-angulo.png" alt="Dr. Angulo">
+                <h3>Odontólogo Angulo</h3>
+                <p class="rol" style="color: var(--circo-rojo); font-weight: bold;">Maestro de Ceremonias</p>
+                <span class="desc">Líder principal del show dental. Graduado y certificado.</span>
+            </div>
+
+            <div class="staff-member card-blue">
+                <img src="imagen/logo-clinica.png" alt="Jorge Luis Suica">
+                <h3>Jorge Luis Suica</h3>
+                <p class="rol" style="color: var(--circo-azul); font-weight: bold;">Ingeniero de Moldes</p>
+                <span class="desc">Experto en sistemas y modelado estructural de piezas dentales.</span>
+            </div>
+
+            <div class="staff-member card-yellow" data-personaje="quispe">
+                <img src="imagen/quispe-pomni.png" alt="Quispe Pomni">
+                <h3>Quispe Pomni</h3>
+                <p class="rol" style="color: var(--circo-amarillo); font-weight: bold;">Pasante Novato</p>
+                <span class="desc">Nuevo recluta rebelde del odontólogo Angulo. ¡A veces lo saca de quicio!</span>
+            </div>
+
+            <div class="staff-member card-yellow">
+                <img src="imagen/logo-clinica.png" alt="Anderson Barillas">
+                <h3>Anderson Barillas</h3>
+                <p class="rol" style="color: var(--circo-amarillo); font-weight: bold;">Logística Digital</p>
+                <span class="desc">Administrador de recursos y control de materiales del circo.</span>
+            </div>
+
+            <div class="staff-member card-red" data-personaje="oliver">
+                <img src="imagen/secretario-oliver.png" alt="Oliver Campos">
+                <h3>Oliver Campos</h3>
+                <p class="rol" style="color: var(--circo-rojo); font-weight: bold;">Secretario Estratégico</p>
+                <span class="desc">Mano derecha y delegado oficial de la carpa dental (UNICA).</span>
+            </div>
+
+            <div class="staff-member card-blue" data-personaje="boza">
+                <img src="imagen/hygiene-america.png" alt="America Boza">
+                <h3>America Boza</h3>
+                <p class="rol" style="color: var(--circo-azul); font-weight: bold;">Especialista en Higiene</p>
+                <span class="desc">Cuidado clínico y soporte psicológico extremo del paciente.</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-bottom: 40px;">
+            <button id="btn-abstraer-manual" style="background: #ff0055; color: white; padding: 15px 35px; font-family: 'Bungee', sans-serif; font-size: 1.1rem; border: 3px solid white; border-radius: 8px; cursor: pointer; box-shadow: 0 0 15px red; transition: 0.3s;">
+                🌀 ABSTRAER ELENCO
+            </button>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('audio-seccion');
+            audio.play().catch(err => console.log("Interacciona para jugar"));
+            iniciarContadorAbstraccion();
+        });
+    </script>
+</body>
+</html>
